@@ -6,10 +6,12 @@ void drive(int leftSpeed, int rightSpeed);
 void checkRange(int *val);
 void setMotorStates(int leftVal, int rightVal);
 
-// the pin for the servo
+// The pin for the servo
 int servoPin = 9;
-int steps = 3;
-int servoPos = 0;
+
+// Servo settings
+int steps = 3;		// How many degrees the servo will rotate each step
+int servoPos = 0;	// The initial position of the servo
 
 // The pins for the ultrasonic sensor
 int triggerPin = 10;
@@ -19,11 +21,14 @@ int echoPin = 11;
 // Pins controlling the speed of the motor via PWM
 int enA = 5;
 int enB = 6;
+
 // Pins controlling the direction the motors are going
-int motor1A = 7;
-int motor1B = 2;
-int motor2A = 3;
-int motor2B = 4;
+// Left motor (speed controlled by enA)
+int motorPin1 = 7;
+int motorPin2 = 2;
+// Right motor (speed conotrlled by enB)
+int motorPin3 = 3;
+int motorPin4 = 4;
 
 // Ultrasonic sensor limits (cm)
 int maxDistance = 200;
@@ -43,10 +48,10 @@ void setup() {
   // Set the pins to output our signals
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
-  pinMode(motor1A, OUTPUT);
-  pinMode(motor1B, OUTPUT);
-  pinMode(motor2A, OUTPUT);
-  pinMode(motor2B, OUTPUT);
+  pinMode(motorPin1, OUTPUT);
+  pinMode(motorPin2, OUTPUT);
+  pinMode(motorPin3, OUTPUT);
+  pinMode(motorPin4, OUTPUT);
 }
 
 void loop() {
@@ -113,7 +118,7 @@ void setMotorStates(int leftVal, int rightVal) {
   // create an array of values
   // reverse one value so that both are going in the same direction
   int vals[2] = { -leftVal, rightVal };
-  int motors[4] = { motor1A, motor1B, motor2A, motor2B };
+  int motors[4] = { motorPin1, motorPin2, motorPin3, motorPin4 };
   
   Serial.println(String(leftVal) + "," + String(rightVal));
   for (int i = 0; i < 2; i++) {

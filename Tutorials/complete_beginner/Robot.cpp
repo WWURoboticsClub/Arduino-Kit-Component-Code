@@ -51,10 +51,10 @@ void Robot::roboSetup() {
 	// Set the pins to output our signals
 	pinMode(roboConfig.enA, OUTPUT);
 	pinMode(roboConfig.enB, OUTPUT);
-	pinMode(roboConfig.motor1A, OUTPUT);
-	pinMode(roboConfig.motor1B, OUTPUT);
-	pinMode(roboConfig.motor2A, OUTPUT);
-	pinMode(roboConfig.motor2B, OUTPUT);
+	pinMode(roboConfig.motorPin1, OUTPUT);
+	pinMode(roboConfig.motorPin2, OUTPUT);
+	pinMode(roboConfig.motorPin3, OUTPUT);
+	pinMode(roboConfig.motorPin4, OUTPUT);
 }
 
 /// moves ultrasonic sensor to check for obstacles ahead
@@ -76,7 +76,7 @@ int Robot::doSweep() {
 		delay(15);
 	}
 	if (start == 180)
-		setServoPos(0)
+		setServoPos(0);
 	else if (start == 0)
 		setServoPos(180);
 
@@ -109,7 +109,7 @@ void Robot::setMotorStates(int leftVal, int rightVal) {
 	// create an array of values
 	// reverse one value so that both are going in the same direction
 	int vals[2] = { -leftVal, rightVal };
-	int motors[4] = { roboConfig.motor1A, roboConfig.motor1B, roboConfig.motor2A, roboConfig.motor2B };
+	int motors[4] = { roboConfig.motorPin1, roboConfig.motorPin2, roboConfig.motorPin3, roboConfig.motorPin4 };
 
 	for (int i = 0; i < 2; i++) {
 		// Set the motors to stop

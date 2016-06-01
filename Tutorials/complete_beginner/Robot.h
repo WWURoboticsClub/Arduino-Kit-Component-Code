@@ -5,10 +5,12 @@
 #include <Servo.h>
 
 struct Config {
-	// the pin for the servo
+	// The pin for the servo
 	int servoPin = 9;
-	int steps = 3;
-	int servoPos = 0;
+
+	// Servo settings
+	int steps = 3;		// How many degrees the servo will rotate each step
+	int servoPos = 0;	// The initial position of the servo
 
 	// The pins for the ultrasonic sensor
 	int triggerPin = 10;
@@ -18,11 +20,14 @@ struct Config {
 	// Pins controlling the speed of the motor via PWM
 	int enA = 5;
 	int enB = 6;
+	
 	// Pins controlling the direction the motors are going
-	int motor1A = 7;
-	int motor1B = 2;
-	int motor2A = 3;
-	int motor2B = 4;
+	// Left motor (speed controlled by enA)
+	int motorPin1 = 7;
+	int motorPin2 = 2;
+	// Right motor (speed conotrlled by enB)
+	int motorPin3 = 3;
+	int motorPin4 = 4;
 
 	// Ultrasonic sensor limits (cm)
 	int maxDistance = 200;

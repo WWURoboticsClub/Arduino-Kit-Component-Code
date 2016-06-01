@@ -7,11 +7,14 @@ void setMotorStates(int leftVal, int rightVal);
 // Pins controlling the speed of the motor via PWM
 int enA = 5;
 int enB = 6;
+
 // Pins controlling the direction the motors are going
-int motor1A = 7;
-int motor1B = 2;
-int motor2A = 3;
-int motor2B = 4;
+// Left motor (speed controlled by enA)
+int motorPin1 = 7;
+int motorPin2 = 2;
+// Right motor (speed conotrlled by enB)
+int motorPin3 = 3;
+int motorPin4 = 4;
 
 void setup() {
   // Output debug information/distances
@@ -20,13 +23,14 @@ void setup() {
   // Set the pins to output our signals
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
-  pinMode(motor1A, OUTPUT);
-  pinMode(motor1B, OUTPUT);
-  pinMode(motor2A, OUTPUT);
-  pinMode(motor2B, OUTPUT);
+  pinMode(motorPin1, OUTPUT);
+  pinMode(motorPin2, OUTPUT);
+  pinMode(motorPin3, OUTPUT);
+  pinMode(motorPin4, OUTPUT);
 }
 
 void loop() {
+  Serial.println("Im working");
   drive(120, 120);
   delay(1000);
   drive(0, 0);
@@ -57,35 +61,35 @@ void setMotorStates(int leftVal, int rightVal) {
     // Check left motors
     // Set the motors to stop
     if (leftVal == 0) {
-      digitalWrite(motor1A, LOW);
-      digitalWrite(motor1B, LOW);
+      digitalWrite(motorPin1, LOW);
+      digitalWrite(motorPin2, LOW);
     }
     // Set the motors to go backwards
     else if (leftVal < 0) {
-      digitalWrite(motor1A, HIGH);
-      digitalWrite(motor1B, LOW);
+      digitalWrite(motorPin1, HIGH);
+      digitalWrite(motorPin2, LOW);
     }
     // Set motors to go forward
     else if (leftVal > 0) {
-      digitalWrite(motor1A, LOW);
-      digitalWrite(motor1B, HIGH);
+      digitalWrite(motorPin1, LOW);
+      digitalWrite(motorPin2, HIGH);
     }
 
     // Check right motors
     // Set the motors to stop
     if (rightVal= 0) {
-      digitalWrite(motor2A, LOW);
-      digitalWrite(motor2B, LOW);
+      digitalWrite(motorPin3, LOW);
+      digitalWrite(motorPin4, LOW);
     }
     // Set the motors to go backwards
     else if (rightVal < 0) {
-      digitalWrite(motor2A, HIGH);
-      digitalWrite(motor2B, LOW);
+      digitalWrite(motorPin3, HIGH);
+      digitalWrite(motorPin4, LOW);
     }
     // Set motors to go forward
     else if (rightVal > 0) {
-      digitalWrite(motor2A, LOW);
-      digitalWrite(motor2B, HIGH);
+      digitalWrite(motorPin3, LOW);
+      digitalWrite(motorPin4, HIGH);
     }
 }
 
